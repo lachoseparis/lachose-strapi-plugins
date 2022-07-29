@@ -48,7 +48,7 @@ module.exports = {
 
 ### Create / Edit Custom-Links
 
-When editing a Content-Type, you will find at the right section a Custom-Link block, in wich you can create or update a Permalink by editing the URI field.
+When editing a Content-Type, you will find at the right section a Custom-Link block, in wich you can create or update a Custom-Link by editing the URI field.
 
 ![plugin editing](../../assets/admin-edit.png)
 
@@ -60,8 +60,8 @@ In this section you can search, filter, update or delete Custom-Links.
 
 ### Request Custom-Links
 
-Permalinks are available as a Collection, You can fetch them via the url /api/custom-links as you do with your Content-Types.
+Custom-Links are available as a Collection, You can fetch them via the url /api/custom-links as you do with your Content-Types.
 
-By requesting a Content-Type with Permalink associated you will get the custom-link uri inside the meta of the result.
+By requesting a Content-Type with Custom-Link associated you will get the custom-link uri inside the meta of the result.
 
 You can also proxyfie the result of a custom-links uri by using the route /api/custom-links/proxy{/my-uri}.
