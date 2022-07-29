@@ -1,0 +1,9 @@
+coverage
+node_modules
+stats.json
+.DS_Store
+npm-debug.log
+.idea
+package-lock.json
+**/package-lock.json
+.env

@@ -1,0 +1,9 @@
+.cache
+**/node_modules/**
+**/build/**
+**/dist/**
+.eslintrc.js
+.eslintrc.front.js
+.eslintrc.back.js
+**/example/**
+**/tests/src/**

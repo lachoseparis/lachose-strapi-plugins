@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "article"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "component": {
+      "displayName": "component",
+      "type": "component",
+      "repeatable": true,
+      "component": "core.component"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "core.component"
+      ]
+    }
+  }
+}

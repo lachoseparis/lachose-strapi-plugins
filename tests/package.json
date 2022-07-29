@@ -1,0 +1,41 @@
+{
+  "name": "tests",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi test application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "test:jest": "jest --runInBand --coverage=true --verbose",
+    "test:clean": "rimraf ./.tmp/*",
+    "test": "strapi build && npm run test:jest && npm run test:clean"
+  },
+  "dependencies": {
+    "@strapi/strapi": "4.3.0",
+    "@strapi/plugin-users-permissions": "4.3.0",
+    "@strapi/plugin-i18n": "4.3.0",
+    "better-sqlite3": "7.4.6"
+  },
+  "devDependencies": {
+    "jest": "^28.1.2",
+    "jest-puppeteer": "^6.1.0",
+    "lodash": "4.17.21",
+    "nodemailer-mock": "^1.5.12",
+    "puppeteer": "^15.3.1",
+    "rimraf": "^3.0.2",
+    "supertest": "^6.2.3"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "0d57d15b-f043-4a06-b6ff-31c5f162adc1"
+  },
+  "engines": {
+    "node": ">=12.x.x <=16.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

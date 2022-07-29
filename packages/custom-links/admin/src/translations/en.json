@@ -1,0 +1,73 @@
+{
+	"plugin.name": "Custom-Links",
+	
+	"pages.settings.custom-links.count": "{total, plural, one {# Custom-Link} other {# Custom-Links}} found",
+	
+	"pages.settings.fetching": "Fetching plugin config...",
+	"pages.settings.custom-links.searching": "Searching Custom-Links",
+	"pages.settings.custom-links.search.placeholder": "Search for Custom-Links",
+	"pages.settings.custom-links.search.label": "Clearing Custom-Links search",
+
+	"pages.settings.custom-links.to.delete": "{entriesToDeleteLength, plural, one {# Custom-Link} other {# Custom-Links}} selected",
+	"pages.settings.deleteDialog.title": "Confirmation",
+	"pages.settings.deleteDialog.warningMessage": "Are you sure you want to delete this?",
+	"pages.settings.deleteDialogAll.warningMessage": "Are you sure you want to delete these Custom-Links?",
+	"pages.settings.empty": "No Custom-Link found !",
+
+	"pages.settings.saveDialog.warningMessage": "You have removed Content-Types. The associated Custom-Links will be removed. Are you sure you want to confirm this action?",
+
+	"pages.settings.header.title": "Configuration",
+	"pages.settings.header.description": "Add Content-Types you wish to use with Custom-Links",
+	"pages.settings.general.title": "Content-Types",
+	"pages.settings.form.contentTypes.label": "Selection :",
+	"pages.settings.actions.submit": "Save",
+
+	"pages.settings.autoReload.information": "The autoReload feature is required to add or remove Content-Types for this plugin. Start your server with `strapi develop`",
+
+
+	"pages.settings.TableHeader.sort": "Sort on {label}",
+	"pages.settings.TableHeader.select-all-entries": "Select all entries",
+
+	"pages.settings.label.delete": "Delete",
+	"pages.settings.label.edit": "Edit",
+	"pages.settings.label.view": "View related content",
+	"pages.settings.button.view": "View Content",
+	"pages.settings.checkbox.all.hint": "Select all Custom-Links",
+
+	"pages.settings.success.record.delete": "Deleted",
+	"pages.settings.error.record.delete": "An error occurred during record deletion.",
+	
+	"pages.settings.form.contentTypes.hint": "Please note that if you delete Content-Types that already have Custom-Links, these will be deleted.",
+	"pages.settings.form.contentTypes.placeholder": "Click to select Content-Types",
+
+	"pages.settings.notification.submit.error": "Oups something went wrong!",
+	"pages.settings.notification.submit.success": "Settings saved",
+	
+	"pages.edit.fetching": "Fetching Custom-Links...",
+	"components.edit.button.save": "Save",
+	"components.edit.button.cancel": "Cancel",
+	"components.edit.button.delete": "Delete",
+	"components.edit.button.confirm": "Confirm",
+
+	"components.edit.inputs.uri.label": "uri",
+	"components.edit.inputs.uri.hint": "URI of the Custom-Link",
+	"components.edit.inputs.uri.placeholder": "/example/of/uri",
+	
+	"components.enable.link-to-ctb": "Configure Custom-Links plugin",
+	
+	
+	"components.edit.inputs.uri.success": "Custom-Link has been correctly saved",
+	"components.edit.header.title": "Custom-Link",
+	
+	"components.access.button.content": "Edit the content",
+	"components.idle": "disabled until content is saved",
+
+	"components.list.modal.edit.title": "Edit Custom-Link uri",
+	
+	"components.edit.feedback.checking": "checking",
+	"components.edit.feedback.unavailable": "unavailable",
+	"components.edit.feedback.available": "available",
+	"components.edit.feedback.error": "incorrect format",
+
+	"components.edit.description": "Custom-Links offers you the ability to create a uri for your content."
+}

@@ -1,0 +1,12 @@
+{
+  "eslint.options": {
+    "extensions": [".html", ".js"]
+  },
+  "eslint.validate": ["javascript","javascriptreact"],
+  "eslint.run": "onSave",
+  "files.autoSaveDelay": 500,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+ }
