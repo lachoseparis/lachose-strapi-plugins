@@ -1,6 +1,6 @@
 {
 	"name": "strapi-plugin-custom-links",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"description": "Create Custom-Links for your ContentTypes.",
 	"strapi": {
 		"name": "custom-links",
