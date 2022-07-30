@@ -63,7 +63,10 @@
     "node": ">=12.x.x <=16.x.x",
     "npm": ">=7.0.0"
   },
-  "repository": "https://github.com/lachoseparis/lachose-strapi-plugins.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lachoseparis/lachose-strapi-plugins"
+  },
   "author": "misterdju <julien.boudringhin@gmail.com>",
   "license": "MIT"
 }
