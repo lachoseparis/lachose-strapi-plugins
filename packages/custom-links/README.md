@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../../assets/custom-links.png" width="318px" alt="Strapi logo" />
+  <img src="https://user-images.githubusercontent.com/505236/181904982-37d3ad4c-d430-4a21-911b-08e8b9e8fdf7.png" width="318px" alt="Strapi logo" />
 </p>
 
 <div align="center">
@@ -28,7 +28,7 @@ Go to **Settings > Custom-Links Plugin > Configuration**
 
 And add content-types you wish to associate Custom-Links and just save it.
 
-![plugin settings](../../assets/admin-settings.png)
+![plugin settings](https://user-images.githubusercontent.com/505236/181905076-bcbaca58-ec4d-4d5c-ad0d-84f14329bd9e.png)
 
 **_NOTE_**
 
@@ -50,13 +50,13 @@ module.exports = {
 
 When editing a Content-Type, you will find at the right section a Custom-Link block, in wich you can create or update a Custom-Link by editing the URI field.
 
-![plugin editing](../../assets/admin-edit.png)
+![plugin editing](https://user-images.githubusercontent.com/505236/181905044-cdeb3dda-324c-4c44-b73c-35a3dbba0fd4.png)
 
 You will be able to retrieve the list of Custom-Links from **Plugins > Custom-Links** section.
 
 In this section you can search, filter, update or delete Custom-Links.
 
-![plugin listing](../../assets/admin-custom-links.png)
+![admin-custom-links](https://user-images.githubusercontent.com/505236/181905098-c4aac507-8454-41f3-9ed2-69d2988482fa.png)
 
 ### Request Custom-Links
 
