@@ -12,7 +12,6 @@
     "start": "cd example && strapi start",
     "test": "cd tests && npm run test",
     "test:jest": "cd tests && npm run test:jest",
-    "watching": "watch 'strapi restart' ./packages/permalink/*",
     "lint": "npm-run-all -p lint:code lint:css",
     "lint:code": "eslint .",
     "lint:css": "stylelint packages/**/admin/src/**/*.js",
@@ -64,7 +63,10 @@
     "node": ">=12.x.x <=16.x.x",
     "npm": ">=7.0.0"
   },
-  "repository": "https://github.com/lachoseparis/strapi-plugin-permalink.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lachoseparis/lachose-strapi-plugins"
+  },
   "author": "misterdju <julien.boudringhin@gmail.com>",
   "license": "MIT"
 }
