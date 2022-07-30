@@ -1,11 +1,15 @@
 {
 	"name": "strapi-plugin-custom-links",
-	"version": "0.1.8",
+	"version": "0.1.9",
 	"description": "Create Custom-Links for your ContentTypes.",
 	"strapi": {
 		"name": "custom-links",
 		"description": "Create Custom-Links for a selection of ContentTypes directly from the Back end.",
 		"kind": "plugin"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lachoseparis/lachose-strapi-plugins"
 	},
 	"author": {
 		"name": "@lachoseparis",
