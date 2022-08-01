@@ -32,10 +32,11 @@ And add content-types you wish to associate Custom-Links and just save it.
 
 **_NOTE_**
 
-Alternatively, you can create the config file by your own, by crating a file "custom-links.js" inside the folder config of your strapi project.
+Alternatively, you can create the config file by your own, by creating a file `custom-links.js` inside the folder config of your strapi project.
 
 The file looks like this :
 
+`./config/custom-links.js`
 ```javascript
 'use strict';
 
@@ -58,10 +59,27 @@ In this section you can search, filter, update or delete Custom-Links.
 
 ![admin-custom-links](https://user-images.githubusercontent.com/505236/181905098-c4aac507-8454-41f3-9ed2-69d2988482fa.png)
 
-### Request Custom-Links
+## API
 
-Custom-Links are available as a Collection, You can fetch them via the url /api/custom-links as you do with your Content-Types.
+### A note on proxy pattern
+Our own use of this plugin is to only rely on the URI to request every content-type, the same way you would request node with Drupal 8, then dynamically create a template according to the nature of the data returned. This is a pattern called "proxy".
+
+Since this plugin can be enabled only on a few content-types, we reckon that you might need to fetch the custom-link collection itself.
+
+See the difference in the examples below
+
+### Endpoints
+
+#### Request content-type (Proxy - basic usage)
+As we always try to stay as close as possible of the strapi default behavior and core concept while developing this plugin, we think that per URI request shouldn't be used with a `GET` parameters because they prevent the request to be cached by the browser and are harder to manage behind a CDN.
+
+#### Default CRUD
+The custom-link CRUD exposes the same endpoiunt as the strapi default controller.
+
+
+
+Custom-Links are available as a Collection, You can fetch them via the url `/api/custom-links` as you do with your Content-Types.
 
 By requesting a Content-Type with Custom-Link associated you will get the custom-link uri inside the meta of the result.
 
-You can also proxyfie the result of a custom-links uri by using the route /api/custom-links/proxy{/my-uri}.
+You can also proxyfie the result of a custom-links uri by using the route `/api/custom-links/proxy{/my-uri}`.
