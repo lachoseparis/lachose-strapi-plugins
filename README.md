@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/505236/181904982-37d3ad4c-d430-4a21-911b-08e8b9e8fdf7.png" width="318px" alt="Strapi logo" />
+  <img src="https://avatars.githubusercontent.com/u/71659975?s=200&v=4" width="80px" alt="la chose logo" />
 </p>
 
 <div align="center">
