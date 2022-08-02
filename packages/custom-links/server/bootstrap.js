@@ -131,6 +131,7 @@ module.exports = async ({ strapi }) => {
         // add ____cl____ for meta insertion via middleware
         if (data && data.length) {
           event.result.____cl____ = {};
+          event.result.____cl____.id = data[0].id;
           event.result.____cl____.uri = data[0].uri;
           event.result.____cl____.kind = data[0].kind;
           event.result.____cl____.contentId = data[0].contentId;
