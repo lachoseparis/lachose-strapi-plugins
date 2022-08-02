@@ -9669,25 +9669,12 @@ nodemailer-fetch@1.6.0:
   resolved "https://registry.npmjs.org/nodemailer-fetch/-/nodemailer-fetch-1.6.0.tgz"
   integrity sha512-P7S5CEVGAmDrrpn351aXOLYs1R/7fD5NamfMCHyi6WIkbjS2eeZUB/TkuvpOQr0bvRZicVqo59+8wbhR3yrJbQ==
 
-nodemailer-mock@^1.5.12:
-  version "1.5.12"
-  resolved "https://registry.npmjs.org/nodemailer-mock/-/nodemailer-mock-1.5.12.tgz"
-  integrity sha512-Muymd+qvTswEExCys01D11JW2ugHN2mzDaq3dfct546hmmk+Wro3sK3lVSoUZP7x53cOHv1iX3C51mL9IlY8KA==
-  dependencies:
-    debug "^4.3.4"
-    nodemailer "^6.x"
-
 nodemailer-shared@1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/nodemailer-shared/-/nodemailer-shared-1.1.0.tgz"
   integrity sha512-68xW5LSyPWv8R0GLm6veAvm7E+XFXkVgvE3FW0FGxNMMZqMkPFeGDVALfR1DPdSfcoO36PnW7q5AAOgFImEZGg==
   dependencies:
     nodemailer-fetch "1.6.0"
-
-nodemailer@^6.x:
-  version "6.7.7"
-  resolved "https://registry.npmjs.org/nodemailer/-/nodemailer-6.7.7.tgz"
-  integrity sha512-pOLC/s+2I1EXuSqO5Wa34i3kXZG3gugDssH+ZNCevHad65tc8vQlCQpOLaUjopvkRQKm2Cki2aME7fEOPRy3bA==
 
 normalize-package-data@^2.3.2, normalize-package-data@^2.5.0:
   version "2.5.0"
