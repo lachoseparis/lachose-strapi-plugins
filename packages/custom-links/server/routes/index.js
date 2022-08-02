@@ -1,12 +1,13 @@
 'use strict';
+const customLinksRoutes = require('./custom-links');
 
 module.exports = {
   admin: {
     type: 'admin',
-    routes: [...require('./settings'), ...require('./custom-links')],
+    routes: [...require('./settings'), ...customLinksRoutes],
   },
   'content-api': {
     type: 'content-api',
-    routes: require('./custom-links'),
+    routes: customLinksRoutes.filter(route => route.api),
   },
 };

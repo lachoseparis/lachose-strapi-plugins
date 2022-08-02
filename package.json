@@ -1,6 +1,6 @@
 {
   "name": "lachose-strapi-plugins",
-  "version": "0.1.1",
+  "version": "1.0.10",
   "private": true,
   "workspaces": [
     "packages/*",
