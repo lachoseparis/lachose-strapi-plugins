@@ -53,12 +53,14 @@ module.exports = [
     method: 'DELETE',
     path: '/:id',
     handler: 'customLinks.delete',
+    api: false,
     config: { policies: [] },
   },
   {
     method: 'POST',
     path: '/deleteBulk',
     handler: 'customLinks.deleteMany',
+    api: false,
     config: { policies: [] },
   },
 ];
