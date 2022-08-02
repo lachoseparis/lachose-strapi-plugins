@@ -10,7 +10,7 @@
     "strapi": "strapi",
     "test:jest": "jest --runInBand --coverage=true --verbose",
     "test:clean": "rimraf ./.tmp/*",
-    "test": "strapi build && npm run test:jest && npm run test:clean"
+    "test": "npm run build && npm run test:jest && npm run test:clean"
   },
   "dependencies": {
     "@strapi/plugin-i18n": "4.3.0",
