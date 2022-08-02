@@ -129,7 +129,12 @@ module.exports = async ({ strapi }) => {
           filters: { kind: model.uid, contentId: result.id },
         });
         // add ____cl____ for meta insertion via middleware
-        if (data && data.length) event.result.____cl____ = data[0].uri;
+        if (data && data.length) {
+          event.result.____cl____ = {};
+          event.result.____cl____.uri = data[0].uri;
+          event.result.____cl____.kind = data[0].kind;
+          event.result.____cl____.contentId = data[0].contentId;
+        }
       }
     },
   });
