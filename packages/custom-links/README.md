@@ -8,7 +8,7 @@
 
 A plugin for [Strapi](https://github.com/strapi/strapi) that allows you to create and edit URI for different ContentTypes.
 
-## Installation
+# 🔌 Installation
 
 ```sh
 npm install strapi-plugin-custom-links
@@ -20,7 +20,7 @@ npm install strapi-plugin-custom-links
 yarn add strapi-plugin-custom-links
 ```
 
-## Configuration
+# ⚙️ Configuration
 
 You can configure the plugin directly from the Strapi interface in developer mode.
 
@@ -46,15 +46,15 @@ module.exports = {
 };
 ```
 
-## Create and edit Custom-Links
+# ✏️ Create and edit Custom-Links
 
-### From the Content Manager
+## From the Content Manager
 
 When editing a Content-Type, you will find at the right section a Custom-Link block, in wich you can create or update a Custom-Link by editing the URI field.
 
 ![plugin editing](https://user-images.githubusercontent.com/505236/181905044-cdeb3dda-324c-4c44-b73c-35a3dbba0fd4.png)
 
-### From the Custom-Links plugin section
+## From the Custom-Links plugin section
 
 You will be able to retrieve the list of Custom-Links from **Plugins > Custom-Links** section.
 
@@ -62,17 +62,26 @@ In this section you can search, filter, update or delete Custom-Links.
 
 ![admin-custom-links](https://user-images.githubusercontent.com/505236/181905098-c4aac507-8454-41f3-9ed2-69d2988482fa.png)
 
-## API Usage
+# ⚡️ API
 
-### Basic Usage
+## Schema
 
-#### Note on proxy pattern
+| Field     | Type         | Unique | minLength | regExp                | Description                           |
+| --------- | ------------ | ------ | --------- | --------------------- | ------------------------------------- |
+| id        | `biginteger` | true   | 1         |                       | The id of the Custom-Link             |
+| uri       | `string`     | true   | 1         | `^/[a-zA-Z0-9-_./]*$` | The uri of the Custom-Link            |
+| kind      | `string`     | false  | -         | -                     | The uid of the ContentType associated |
+| contentId | `biginteger` | false  | -         | -                     | The id of the ContentType associated  |
+## Basic Usage
 
-Our own use of this plugin is to only rely on the URI to request every content-type (the same way you would request a node with Drupal 8) then dynamically create a template according to the nature of the data returned. This is a pattern called **proxy**.
+### Note on proxy pattern
 
-Since this plugin can be enabled only on a few content-types, we reckon that you might need to fetch the custom-link collection itself.
+Our own use of this plugin is to only rely on the URI to request every content-type (the same way you would request a node with Drupal 8) then dynamically create a template according to the nature of the data returned.
+This is a pattern called **proxy**.
 
-#### Endpoint of a content-type retrieve by its Custom-Links uri
+Since this plugin can be enabled only on a few content-types, we reckon that you might need to fetch the custom-link collection itself (see Alternative usage)
+
+### Endpoints
 
 As we always try to stay as close as possible of the strapi default behavior and core concept while developing this plugin, we think that per URI request shouldn't be used with a `GET` parameters because they prevent the request to be cached by the browser and are harder to manage behind a CDN.
 
@@ -80,15 +89,16 @@ As we always try to stay as close as possible of the strapi default behavior and
 | ------ | ------------------------------ | --------------------------------------------------- | ------------------------------------------------ |
 | `GET`  | `/api/custom-links/proxy/:uri` | Fetch the data of a Content-Type by its Custom-Link | By default components and relations are populate |
 
-#### Example response of a proxy request (/api/custom-links/proxy/my-article-uri):
+### Response
 
+`/api/custom-links/proxy/my-article-uri`
 ```json
 {
   "data": {
     "id": 1,
     "attributes": {
-      "title": "Mon article",
-      "slug": "mon-article",
+      "title": "My article",
+      "slug": "my-article",
       "createdAt": "2022-08-01T16:32:35.878Z",
       "updatedAt": "2022-08-01T16:32:35.878Z",
       "component": [
@@ -109,6 +119,7 @@ As we always try to stay as close as possible of the strapi default behavior and
   "meta": {
     "meta": {
       "customLink": {
+        "id": "1",
         "uri": "/my-article-uri",
         "kind": "api::article.article",
         "contentId": "1"
@@ -118,43 +129,18 @@ As we always try to stay as close as possible of the strapi default behavior and
 }
 ```
 
-#### Custom-Link meta
+As you can see on the previous example we inject customLink data inside the meta of the result. This can also be used to retrieve a specific custom-link as seen in the following part.
 
-As you can see on the previous example we inject customLink data inside the meta of the result.
 
-Example of a request `/api/article/1`
+## Alternative Usage
 
-```json
-{
-  "data": {
-    "id": 1,
-    "attributes": {
-      "title": "Mon article",
-      "slug": "mon-article",
-      "createdAt": "2022-08-01T16:32:35.878Z",
-      "updatedAt": "2022-08-01T16:32:35.878Z",
-      "publishedAt": null
-    }
-  },
-  "meta": {
-    "meta": {
-      "customLink": {
-        "uri": "/my-article-uri",
-        "kind": "api::article.article",
-        "contentId": "1"
-      }
-    }
-  }
-}
-```
-
-### Alternative Usage
-
-You can also use the custom-link CRUD which exposes the same endpoints as the strapi default controller.
+You can also use the custom-link classic CRUD which exposes the same endpoints as the strapi default controller.
 
 By requesting a Custom-Link collection, you can retrieve the kind (the Content-Type uid) and the contentId (the id of the ContentType) and then request the Content-Type associated.
 
-#### Endpoints
+This can be useful if you need to know the target content-type before making the request.
+
+### Endpoints
 
 | Method | URL                       | Description                   | Details                                       |
 | ------ | ------------------------- | ----------------------------- | --------------------------------------------- |
@@ -163,12 +149,3 @@ By requesting a Custom-Link collection, you can retrieve the kind (the Content-T
 | `GET`  | `/api/custom-links/:id`   | Fetch one custom-link         | -                                             |
 | `GET`  | `/api/custom-links/count` | Get the count of custom-links | -                                             |
 | `PUT`  | `/api/custom-links/:id`   | Update a custom-link          | -                                             |
-
-### Custom-Link Schema
-
-| Field     | Type         | Unique | minLength | regExp                | Description                           |
-| --------- | ------------ | ------ | --------- | --------------------- | ------------------------------------- |
-| id        | `biginteger` | true   | 1         |                       | The id of the Custom-Link             |
-| uri       | `string`     | true   | 1         | `^/[a-zA-Z0-9-_./]*$` | The uri of the Custom-Link            |
-| kind      | `string`     | false  | -         | -                     | The uid of the ContentType associated |
-| contentId | `biginteger` | false  | -         | -                     | The id of the ContentType associated  |
