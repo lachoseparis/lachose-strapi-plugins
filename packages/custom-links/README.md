@@ -149,3 +149,15 @@ This can be useful if you need to know the target content-type before making the
 | `GET`  | `/api/custom-links/:id`   | Fetch one custom-link         | -                                             |
 | `GET`  | `/api/custom-links/count` | Get the count of custom-links | -                                             |
 | `PUT`  | `/api/custom-links/:id`   | Update a custom-link          | -                                             |
+
+# 🤝 Feedback and issues
+Feel free raise an issue for any bug, feedback or idea you might have
+
+As we have a mono repo for any current and future plugin we are developing, please specify the plugin you are raising an issue for.
+
+# 🚀 Strapi Services
+We are a small french agency with a strong Web Performance ortiented technical team; We work mainly with Strapi, and other NodeJS CMS, and with React and VueJS.
+If you need any help to develop a Strapi app or website, a Strapi plugin, if you need any services in Web Performance, feel free to contact us at [strapi@lachose.fr](mailto:strapi@lachose.fr)
+
+# 📝 License
+[MIT License](LICENSE.md) Copyright (c) [la chose](https://www.lachose.fr/) &amp; [Strapi Solutions](https://strapi.io/).
