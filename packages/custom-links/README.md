@@ -46,13 +46,15 @@ module.exports = {
 };
 ```
 
-## Usage
+## Create and edit Custom-Links
 
-### Create / Edit Custom-Links
+### From the Content Manager
 
 When editing a Content-Type, you will find at the right section a Custom-Link block, in wich you can create or update a Custom-Link by editing the URI field.
 
 ![plugin editing](https://user-images.githubusercontent.com/505236/181905044-cdeb3dda-324c-4c44-b73c-35a3dbba0fd4.png)
+
+### From the Custom-Links plugin section
 
 You will be able to retrieve the list of Custom-Links from **Plugins > Custom-Links** section.
 
@@ -60,44 +62,25 @@ In this section you can search, filter, update or delete Custom-Links.
 
 ![admin-custom-links](https://user-images.githubusercontent.com/505236/181905098-c4aac507-8454-41f3-9ed2-69d2988482fa.png)
 
-## API
+## API Usage
 
-### A note on proxy pattern
+### Basic Usage
 
-Our own use of this plugin is to only rely on the URI to request every content-type, the same way you would request node with Drupal 8, then dynamically create a template according to the nature of the data returned. This is a pattern called "proxy".
+#### Note on proxy pattern
+
+Our own use of this plugin is to only rely on the URI to request every content-type (the same way you would request a node with Drupal 8) then dynamically create a template according to the nature of the data returned. This is a pattern called **proxy**.
 
 Since this plugin can be enabled only on a few content-types, we reckon that you might need to fetch the custom-link collection itself.
 
-See the difference in the examples below
-
-#### Request content-type (Proxy - basic usage)
+#### Endpoint of a content-type retrieve by its Custom-Links uri
 
 As we always try to stay as close as possible of the strapi default behavior and core concept while developing this plugin, we think that per URI request shouldn't be used with a `GET` parameters because they prevent the request to be cached by the browser and are harder to manage behind a CDN.
 
-#### Custom-Link Schema
+| Method | URL                            | Description                                         | Details                                          |
+| ------ | ------------------------------ | --------------------------------------------------- | ------------------------------------------------ |
+| `GET`  | `/api/custom-links/proxy/:uri` | Fetch the data of a Content-Type by its Custom-Link | By default components and relations are populate |
 
-| Field     | Type         | Unique | minLength | regExp                |
-| --------- | ------------ | ------ | --------- | --------------------- |
-| uri       | `string`     | true   | 1         | `^/[a-zA-Z0-9-_./]*$` |
-| kind      | `string`     | false  | -         | -                     |
-| contentId | `biginteger` | false  | -         | -                     |
-
-#### Endpoints
-
-The custom-link CRUD exposes the same endpoints as the strapi default controller.
-
-| Method   | URL                            | Description                                                       | Details                                                          |
-| -------- | ------------------------------ | ----------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `GET`    | `/api/custom-links`            | Fetch custom links                                                | You can use API parameters to filter, sort and paginate results. |
-| `POST`   | `/api/custom-links`            | Create a custom-link                                              |
-| `GET`    | `/api/custom-links/:id`        | Fetch one custom-link                                             |
-| `GET`    | `/api/custom-links/count`      | Get the count of custom-links                                     |
-| `PUT`    | `/api/custom-links/:id`        | Update a custom-link                                              |
-| `DELETE` | `/api/custom-links/:id`        | Delete a custom-link                                              |
-| `POST`   | `/api/custom-links/deleteBulk` | Delete many custom-links                                          | Send ids of customlinks to be deleted                            |
-| `GET`    | `/api/custom-links/proxy/:uri` | Fetch the data of a Content-Type associated with the Content-Link | By default components and relations are populate                 |
-
-#### Example of a proxy request (/api/custom-links/proxy/my-article-uri):
+#### Example response of a proxy request (/api/custom-links/proxy/my-article-uri):
 
 ```json
 {
@@ -124,16 +107,22 @@ The custom-link CRUD exposes the same endpoints as the strapi default controller
     }
   },
   "meta": {
-    "customLink": "/my-article-uri"
+    "meta": {
+      "customLink": {
+        "uri": "/my-article-uri",
+        "kind": "api::article.article",
+        "contentId": "1"
+      }
+    }
   }
 }
 ```
 
-#### `Custom-Link` meta injection
+#### Custom-Link meta
 
-For each result of a request to a Content-Type that is associated to a Custom-Link, an attribute `customLink` is injected inside the meta.
+As you can see on the previous example we inject customLink data inside the meta of the result.
 
-Example of a response
+Example of a request `/api/article/1`
 
 ```json
 {
@@ -148,7 +137,38 @@ Example of a response
     }
   },
   "meta": {
-    "customLink": "/my-article-uri"
+    "meta": {
+      "customLink": {
+        "uri": "/my-article-uri",
+        "kind": "api::article.article",
+        "contentId": "1"
+      }
+    }
   }
 }
 ```
+
+### Alternative Usage
+
+You can also use the custom-link CRUD which exposes the same endpoints as the strapi default controller.
+
+By requesting a Custom-Link collection, you can retrieve the kind (the Content-Type uid) and the contentId (the id of the ContentType) and then request the Content-Type associated.
+
+#### Endpoints
+
+| Method | URL                       | Description                   | Details                                       |
+| ------ | ------------------------- | ----------------------------- | --------------------------------------------- |
+| `GET`  | `/api/custom-links`       | Fetch custom links            | For more information see Strapi documentation |
+| `POST` | `/api/custom-links`       | Create a custom-link          | -                                             |
+| `GET`  | `/api/custom-links/:id`   | Fetch one custom-link         | -                                             |
+| `GET`  | `/api/custom-links/count` | Get the count of custom-links | -                                             |
+| `PUT`  | `/api/custom-links/:id`   | Update a custom-link          | -                                             |
+
+### Custom-Link Schema
+
+| Field     | Type         | Unique | minLength | regExp                | Description                           |
+| --------- | ------------ | ------ | --------- | --------------------- | ------------------------------------- |
+| id        | `biginteger` | true   | 1         |                       | The id of the Custom-Link             |
+| uri       | `string`     | true   | 1         | `^/[a-zA-Z0-9-_./]*$` | The uri of the Custom-Link            |
+| kind      | `string`     | false  | -         | -                     | The uid of the ContentType associated |
+| contentId | `biginteger` | false  | -         | -                     | The id of the ContentType associated  |
