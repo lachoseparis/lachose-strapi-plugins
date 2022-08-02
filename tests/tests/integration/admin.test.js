@@ -28,7 +28,7 @@ describe('Strapi admin page', () => {
     await page.goto('http://localhost:1338/admin/settings', { waitUntil: 'networkidle0' });
     await page.click('a[href="/admin/settings/custom-links"]');
     await page.waitForSelector('div[data-strapi-header="true"]');
-    await expect(page).toMatch('Add Content-Types you wish to use with custom links');
+    await expect(page).toMatch('Add Content-Types you wish to use with Custom-Links');
   }, 20000);
 
   it('should create post and custom link', async () => {
