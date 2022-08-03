@@ -130,4 +130,22 @@ describe('Default custom links methods and requests', () => {
         expect(data.body.meta.customLink.uri).toBe('/my-post-for-meta-test');
       });
   });
+
+  it('should return 404 for singleType not published', async () => {
+    const about = await strapi.entityService.create('api::about.about', {
+      data: {
+        title: 'About',
+        uri: '/about',
+      },
+    });
+
+    expect(about.title).toBe('About');
+
+    await request(strapi.server.httpServer) // app server is and instance of Class: http.Server
+      .get('/api/custom-links/proxy/about')
+      .set('accept', 'application/json')
+      .set('Content-Type', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(404);
+  });
 });
