@@ -127,7 +127,7 @@ describe('Default custom links methods and requests', () => {
       .expect(200)
       .then(data => {
         expect(data.body.meta).toBeDefined();
-        expect(data.body.meta.customLink).toBe('/my-post-for-meta-test');
+        expect(data.body.meta.customLink.uri).toBe('/my-post-for-meta-test');
       });
   });
 });
