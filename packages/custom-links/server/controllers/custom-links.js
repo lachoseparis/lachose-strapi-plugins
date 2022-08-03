@@ -1,6 +1,7 @@
 'use strict';
 
 const { createCoreController } = require('@strapi/strapi').factories;
+const { isNil } = require('lodash');
 const { getCustomLinksService, CUSTOM_LINKS_UID } = require('../utils');
 
 module.exports = createCoreController(CUSTOM_LINKS_UID, ({ strapi }) => ({
@@ -10,7 +11,16 @@ module.exports = createCoreController(CUSTOM_LINKS_UID, ({ strapi }) => ({
     if (item) {
       const { contentId, kind } = item;
       const query = await getCustomLinksService(strapi).getProxyQuery(kind);
-      const entity = await strapi.service(kind).findOne(contentId, query);
+      const hasDraftAndPublish = strapi.contentTypes[kind].options.draftAndPublish;
+      let entity;
+      if (strapi.contentTypes[kind].kind === 'singleType') {
+        entity = await strapi.service(kind).find(query);
+      } else {
+        entity = await strapi.service(kind).findOne(contentId, query);
+        if (hasDraftAndPublish && isNil(entity.publishedAt)) {
+          return null;
+        }
+      }
       const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
       return this.transformResponse(sanitizedEntity);
     }
