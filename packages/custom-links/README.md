@@ -72,7 +72,6 @@ In this section you can search, filter, update or delete Custom-Links.
 | uri       | `string`     | true   | 1         | `^/[a-zA-Z0-9-_./]*$` | The uri of the Custom-Link            |
 | kind      | `string`     | false  | -         | -                     | The uid of the ContentType associated |
 | contentId | `biginteger` | false  | -         | -                     | The id of the ContentType associated  |
-
 ## Basic Usage
 
 ### Note on proxy pattern
@@ -93,7 +92,6 @@ As we always try to stay as close as possible of the strapi default behavior and
 ### Response
 
 `/api/custom-links/proxy/my-article-uri`
-
 ```json
 {
   "data": {
@@ -133,6 +131,7 @@ As we always try to stay as close as possible of the strapi default behavior and
 
 As you can see on the previous example we inject customLink data inside the meta of the result. This can also be used to retrieve a specific custom-link as seen in the following part.
 
+
 ## Alternative Usage
 
 You can also use the custom-link classic CRUD which exposes the same endpoints as the strapi default controller.
@@ -151,16 +150,26 @@ This can be useful if you need to know the target content-type before making the
 | `GET`  | `/api/custom-links/count` | Get the count of custom-links | -                                             |
 | `PUT`  | `/api/custom-links/:id`   | Update a custom-link          | -                                             |
 
-# 🤝 Feedback and issues
+# 🚧 Roadmap
+We aim at providing a fully buffed plugin to leverage URI management and navigation issues in Strapi so it can become the true CMS it deserve.
+Here are a few ideas we will work on.
 
-Feel free to raise an issue for any bugs, comments or ideas you may have.
+- ✅ ~~Initial Release~~
+- 💡 Keep working on stability
+- 💡 Better documentation with use case and frontend examples
+- 💡 Redirections (for SEO purpose)
+- 💡 Batch import for redirections
+- 💡 Custom field with autocompletion
+- 💡 And much more !
+
+# 🤝 Feedback and issues
+Feel free raise an issue for any bug, feedback or idea you might have
+
 As we have a mono repo for any current and future plugin we are developing, please specify the plugin you are raising an issue for.
 
 # 🚀 Strapi Services
-
-We are a small french agency with a strong Web Performance ortiented technical team; We work mainly with Strapi, and other NodeJS CMS, with React and VueJS.
-If you need any help to develop a Strapi app or plugin, website, if you need any services in Web Performance, feel free to contact us at [strapi@lachose.fr](mailto:strapi@lachose.fr)
+We are a small french agency with a strong Web Performance ortiented technical team; We work mainly with Strapi, and other NodeJS CMS, and with React and VueJS.
+If you need any help to develop a Strapi app or website, a Strapi plugin, if you need any services in Web Performance, feel free to contact us at [strapi@lachose.fr](mailto:strapi@lachose.fr)
 
 # 📝 License
-
 [MIT License](LICENSE.md) Copyright (c) [la chose](https://www.lachose.fr/) &amp; [Strapi Solutions](https://strapi.io/).
