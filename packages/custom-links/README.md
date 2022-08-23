@@ -5,6 +5,14 @@
 <div align="center">
   <h1>Strapi v4 - Custom Links</h1>
 </div>
+<div align="center">
+  <a href="https://www.npmjs.com/package/strapi-plugin-custom-links">
+    <img alt="NPM Release" src="https://img.shields.io/npm/v/strapi-plugin-custom-links?style=for-the-badge"/>
+  </a>
+  <a href="https://www.npmjs.com/package/strapi-plugin-custom-links">
+    <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/strapi-plugin-custom-links?style=for-the-badge"/>
+  </a>
+</div>
 
 A plugin for [Strapi](https://github.com/strapi/strapi) that allows you to create and edit URI for different ContentTypes.
 
