@@ -25,6 +25,7 @@ import useAllContentTypes from '../../hooks/useAllContentTypes';
 import useAppInfo from '../../hooks/useAppInfo';
 import pluginPermissions from '../../permissions';
 import SettingsConfirmDialog from '../../components/SettingsConfirmDialog';
+import serverRestartWatcher from '../../utils/serverRestartWatcher';
 
 const ProtectedSettingsPage = () => (
   <CheckPagePermissions permissions={pluginPermissions.settings.read}>
@@ -93,6 +94,8 @@ const SettingsPage = () => {
         lockAppWithAutoreload();
         const payload = preparePayload(values);
         await submitMutation({ body: payload });
+        await serverRestartWatcher(true);
+
         setIsModified(false);
         await forceRefetch();
       } catch (err) {
