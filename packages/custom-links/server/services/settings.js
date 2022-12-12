@@ -8,10 +8,34 @@ const { CUSTOM_LINKS_UID, PLUGIN_ID } = require('../utils');
 
 const configFileParams = {
   dir: './config/',
-  filename: `${PLUGIN_ID}.js`,
+  filename: `${PLUGIN_ID}`,
 };
 
 module.exports = ({ strapi }) => ({
+  async getFiles(dir) {
+    const files = await fs.readdir(path.join(dir));
+    const fileList = [];
+    for await (const file of files) {
+      const stat = await fs.stat(path.join(dir, file));
+      if (!stat.isDirectory()) {
+        fileList.push(path.join(dir, file));
+      }
+    }
+    return fileList;
+  },
+  async isUsingTypescript() {
+    try {
+      const filePath = path.resolve(configFileParams.dir);
+      const files = await this.getFiles(filePath);
+      const extTs = files.find(file => {
+        return path.extname(file) === '.ts';
+      });
+      const useTs = extTs !== undefined;
+      return useTs;
+    } catch (e) {
+      return false;
+    }
+  },
   async checkConfig() {
     const savedConfig = this.getConfig();
     const storedConfig = await this.getStoredConfig();
@@ -45,20 +69,34 @@ module.exports = ({ strapi }) => ({
     await store.set({ key: 'config', value });
   },
   async updateConfigFile(value) {
-    const filePath = path.resolve(path.join(configFileParams.dir, configFileParams.filename));
+    const isTypescript = this.isUsingTypescript();
+    const ext = isTypescript ? 'ts' : 'js';
+    const filePath = path.resolve(
+      path.join(configFileParams.dir, configFileParams.filename + '.' + ext)
+    );
     await fs.ensureFile(filePath);
-    const strScript = `'use strict';
+    let strScript = '';
+    if (isTypescript) {
+      strScript = `
+export default {
+  contentTypes: [${value.contentTypes.map(ct => `'${ct}'`).join(', ')}],
+};
+`;
+    } else {
+      strScript = `'use strict';
 
 module.exports = {
   contentTypes: [${value.contentTypes.map(ct => `'${ct}'`).join(', ')}],
 };
 `;
+    }
     await fs.outputFile(filePath, strScript);
     return value;
   },
+
   async updateConfig(newConfig) {
     const config = await this.updateConfigFile(newConfig);
-    await this.reload();
+    this.reload();
     return config;
   },
   async retrieveContentTypes() {
@@ -87,6 +125,7 @@ module.exports = {
     return result;
   },
   async reload() {
+    strapi.reload.isWatching = false;
     setImmediate(() => strapi.reload()); //eslint-disable-line
   },
 });
