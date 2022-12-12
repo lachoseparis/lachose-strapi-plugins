@@ -87,13 +87,18 @@ const SettingsPage = () => {
       save(values);
     }
   };
-
+  const delay = async delay => {
+    return new Promise(function(resolve) {
+      setTimeout(resolve, delay);
+    });
+  };
   const save = useCallback(
     async values => {
       try {
         lockAppWithAutoreload();
         const payload = preparePayload(values);
         await submitMutation({ body: payload });
+        await delay(200); // add delay for server to restart
         await serverRestartWatcher(true);
 
         setIsModified(false);
@@ -104,6 +109,7 @@ const SettingsPage = () => {
           message: { id: 'notification.error' },
         });
       } finally {
+        console.info('end of callback');
         unlockAppWithAutoreload();
       }
     },
