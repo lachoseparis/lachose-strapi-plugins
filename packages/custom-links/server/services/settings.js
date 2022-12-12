@@ -96,7 +96,7 @@ module.exports = {
 
   async updateConfig(newConfig) {
     const config = await this.updateConfigFile(newConfig);
-    this.reload();
+    await this.reload();
     return config;
   },
   async retrieveContentTypes() {
@@ -126,6 +126,6 @@ module.exports = {
   },
   async reload() {
     strapi.reload.isWatching = false;
-    setImmediate(() => strapi.reload()); //eslint-disable-line
+    await setImmediate(() => strapi.reload()); //eslint-disable-line
   },
 });
