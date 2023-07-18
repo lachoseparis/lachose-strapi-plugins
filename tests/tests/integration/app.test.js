@@ -6,6 +6,6 @@ describe('Strapi base page', () => {
   });
 
   it('should display "The server is running successfully" text on page', async () => {
-    await expect(page).toMatch('The server is running successfully');
+    await expect(page).toMatchTextContent('The server is running successfully');
   });
 });
