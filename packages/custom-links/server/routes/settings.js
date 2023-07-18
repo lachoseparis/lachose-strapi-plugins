@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = [
+module.exports = () => [
   {
     method: 'GET',
     path: '/settings/content-types',
