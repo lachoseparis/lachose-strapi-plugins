@@ -8,7 +8,7 @@ describe('Strapi admin page', () => {
 
   it('should register and access admin home page', async () => {
     await page.waitForSelector('#main-content');
-    await expect(page).toMatch('Welcome to Strapi!');
+    await expect(page).toMatchTextContent('Welcome to Strapi!');
     await page.type('input[name=firstname]', 'test');
     await page.type('input[name=email]', 'test@test.com');
     await page.type('input[name=password]', 'Password1234');
@@ -21,14 +21,14 @@ describe('Strapi admin page', () => {
     //   path: './test.png',
 
     // });
-    await expect(page).toMatch('3 steps to get started');
+    await expect(page).toMatchTextContent('Strapi Dashboard');
   }, 20000);
 
   it('should access custom links settings page', async () => {
     await page.goto('http://localhost:1338/admin/settings', { waitUntil: 'networkidle0' });
     await page.click('a[href="/admin/settings/custom-links"]');
     await page.waitForSelector('div[data-strapi-header="true"]');
-    await expect(page).toMatch('Add Content-Types you wish to use with Custom-Links');
+    await expect(page).toMatchTextContent('Add Content-Types you wish to use with Custom-Links');
   }, 20000);
 
   it('should create post and custom link', async () => {
@@ -36,21 +36,21 @@ describe('Strapi admin page', () => {
       'http://localhost:1338/admin/content-manager/collectionType/api::post.post/create',
       { waitUntil: 'networkidle0' }
     );
-    await expect(page).toMatch('Create an entry');
+    await expect(page).toMatchTextContent('Create an entry');
     await page.type('input[name=title]', 'My Post');
     await page.type('input[name=uri]', '/my-post');
     await page.waitForTimeout(1500); // wait for debounce and request available URI
-    await expect(page).toMatch('available');
+    await expect(page).toMatchTextContent('available');
     await page.click('button[type="submit"]');
     await page.waitForSelector('div[data-strapi-header="true"]'); //wait for redirect
-    await expect(page).toMatch('My Post');
+    await expect(page).toMatchTextContent('My Post');
   }, 20000);
 
   it('should load custom links plugin page with a custom link', async () => {
     await page.goto('http://localhost:1338/admin/plugins/custom-links?page=1&pageSize=10', {
       waitUntil: 'networkidle0',
     });
-    await expect(page).toMatch('/my-post');
+    await expect(page).toMatchTextContent('/my-post');
   }, 20000);
 
   it('should show unavailable for used uri', async () => {
@@ -58,9 +58,9 @@ describe('Strapi admin page', () => {
       'http://localhost:1338/admin/content-manager/collectionType/api::post.post/create',
       { waitUntil: 'networkidle0' }
     );
-    await expect(page).toMatch('Create an entry');
+    await expect(page).toMatchTextContent('Create an entry');
     await page.type('input[name=uri]', '/my-post');
     await page.waitForTimeout(1500); // wait for debounce and request available URI
-    await expect(page).toMatch('unavailable');
+    await expect(page).toMatchTextContent('unavailable');
   }, 20000);
 });

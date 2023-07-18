@@ -14,7 +14,7 @@ module.exports = {
     {
       displayName: 'integration',
       preset: 'jest-puppeteer',
-      testTimeout: 100000,
+      testTimeout: 10000,
       testMatch: ['<rootDir>/tests/integration/**/*.test.js'],
     },
   ],
