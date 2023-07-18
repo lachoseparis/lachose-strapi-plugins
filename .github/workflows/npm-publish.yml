@@ -7,7 +7,7 @@ on:
 jobs:
   npm-publish:
     runs-on: ubuntu-20.04
-    container: lironavon/docker-puppeteer-container:14.16.0
+    container: lironavon/docker-puppeteer-container:16.10.0
     env:
       CI: true
     steps:
@@ -16,7 +16,7 @@ jobs:
       - name: Init node
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16'
           cache: 'yarn'
       - name: Install deps
         run: yarn install --frozen-lockfile
