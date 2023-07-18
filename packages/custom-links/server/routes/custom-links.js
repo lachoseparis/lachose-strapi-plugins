@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = [
+module.exports = () => [
   {
     method: 'GET',
     path: '/proxy/:uri([A-Za-z0-9_/.-]*)?',
@@ -27,6 +27,7 @@ module.exports = [
     path: '/',
     handler: 'customLinks.find',
     api: true,
+    config: { policies: [] },
   },
   {
     method: 'POST',
